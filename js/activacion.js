@@ -76,4 +76,5 @@ async function verifica() {
 async function activa() {
     const ClienteToken= {
       rfc: document.getElementById("token").value   
-    }; 
+    } 
+};
