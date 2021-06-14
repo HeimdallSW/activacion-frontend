@@ -26,10 +26,10 @@ async function verifica() {
     const ClienteRFC= {
       rfc: document.getElementById("rfc").value   
     }; 
-  
+    console.log(ClienteRFC);
     await axios 
     // .post("http://localhost:8082/api/prueba/login", ClienteRFC) 
-      .post("https://hback-test.herokuapp.com/api/activacion/RFC", ClienteRFC) //url de servicio post y la const del html 
+      .post("https://back-activacion.herokuapp.com/api/activacion/RFC", ClienteRFC) //url de servicio post y la const del html 
     
       .then(res => {  // Revisa la respuesta del POST
 
@@ -38,8 +38,6 @@ async function verifica() {
         console.log (retorno);
         // console.log (retorno[0].idAdministrador);
         console.log (retorno.length);
-
-      
 
           if (retorno.length == 0 ) {
             console.log ('Error en el login')
