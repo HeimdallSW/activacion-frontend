@@ -27,6 +27,8 @@ async function verifica() {
       rfc: document.getElementById("rfc").value   
     }; 
     console.log(ClienteRFC);
+   
+    var retorno = ""; //variable que guarda los datos del res
     await axios 
     // .post("http://localhost:8082/api/prueba/login", ClienteRFC) 
       .post("https://back-activacion.herokuapp.com/api/activacion/RFC", ClienteRFC) //url de servicio post y la const del html 
@@ -35,23 +37,19 @@ async function verifica() {
 
         if (res.request.status == 200) {
         var retorno = res.data;   // el resultado del query llega a res.data
-        console.log (retorno);
-        // console.log (retorno[0].idAdministrador);
-        console.log (retorno.length);
-
-          if (retorno.length == 0 ) {
-            console.log ('Error en el login')
-            window.alert("Correo/contraseña incorrecta");
-          }
-            else {
-
-            if (retorno.length == 1 ) { 
-              console.log ('Si existe el usuario')
-              location.href = "http://localhost:8081/home.html"; 
-            }
-          }
+        console.log (retorno[0].resultado); 
       }
-      // console.log (retorno[0].idAdministrador);
+      
+      if (retorno[0].resultado == 0 ) {
+        console.log ('El RFC no existe en la base')
+        window.alert("El RFC no existe en la base");
+      } 
+      else {
+        if (retorno[0].resultado > 0 ) {
+          console.log ('RFC encontrado')
+          location.href = "https://back-activacion.herokuapp.com/activacion"; 
+      }
+    }
       return retorno;
     })
 
