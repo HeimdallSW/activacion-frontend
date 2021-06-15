@@ -63,7 +63,7 @@ async function verifica() {
         }
       })
 
-}
+};
 
 
 
@@ -73,8 +73,41 @@ async function verifica() {
  |||||||||||||||||||||||||||||||||||||||||||||||
 */
 
-async function activa() {
+async function activarCliente() {
     const ClienteToken= {
       rfc: document.getElementById("token").value   
-    } 
+    }
+    
+    console.log(ClienteToken);
+    await axios 
+      .post("https://back-activacion.herokuapp.com/api/activacion/token", ClienteToken) //url de servicio post y la const del html 
+    
+      .then(res => {  // Revisa la respuesta del POST
+
+        if (res.request.status == 200) {
+        var retorno = res.data;   // el resultado del query llega a res.data
+        console.log (retorno[0].resultado); 
+      }
+      
+      if (retorno[0].resultado == 0 ) {
+        console.log ('El token no es correcto verifiquelo')
+        window.alert("El token no es correcto verifiquelo");
+        // alertify.error("El RFC no existe en la base");
+        // alertify.set('notifier','position', 'top-center');
+        // alertify.error("Ups! No tenemos ese RFC registrado");
+        alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! el token no es correcto verifiquelo'}).show();
+      } 
+      else {
+        if (retorno[0].resultado > 0 ) {
+          console.log ('Token verificado')
+      }
+    }
+      return retorno;
+    })
+
+      .catch(err => {
+        if (err.request.status == 404) {
+            window.alert("Problema con la petición");
+        }
+      })
 };
