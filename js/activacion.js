@@ -75,7 +75,14 @@ async function verifica() {
 
 async function activarCliente() {
     const ClienteToken= {
-      rfc: document.getElementById("token").value   
+      digito1: document.getElementById("Code1").value,
+      digito2: document.getElementById("Code2").value,
+      digito3: document.getElementById("Code3").value,
+      digito4: document.getElementById("Code4").value,
+      digito5: document.getElementById("Code5").value,
+      digito6: document.getElementById("Code6").value,
+
+      token:digito1+digito2+digito3+digito4+digito5+digito6
     }
     
     console.log(ClienteToken);
