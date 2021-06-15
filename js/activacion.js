@@ -84,4 +84,36 @@ async function activarCliente() {
     const ClienteToken= {
       token:digito1+digito2+digito3+digito4+digito5+digito6
     }
+
+    console.log(ClienteToken);
+
+    var respuesta = "";
+    await axios 
+    .post("https://back-activacion.herokuapp.com/api/activacion/token", ClienteToken) //url de servicio post y la const del html 
+  
+    .then(res => {  // Revisa la respuesta del POST
+
+      if (res.request.status == 200) {
+      var respuesta = res.data;   // el resultado del query llega a res.data
+      console.log (respuesta[0].token); 
+    }
+    
+    if (respuesta[0].token == 0 ) {
+      console.log ('El token no es correcto verifiquelo')
+      window.alert("El token no es correcto verifiquelo");
+      alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! el token no es correcto verifiquelo'}).show();
+    } 
+    else {
+      if (respuesta[0].token > 0 ) {
+        console.log ('Token verificado')
+    }
+  }
+    return respuesta;
+  })
+
+    .catch(err => {
+      if (err.request.status == 404) {
+          window.alert("Problema con la petición");
+      }
+    })
 };
