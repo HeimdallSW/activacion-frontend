@@ -42,7 +42,11 @@ async function verifica() {
       
       if (retorno[0].resultado == 0 ) {
         console.log ('El RFC no existe en la base')
-        window.alert("El RFC no existe en la base");
+        // window.alert("El RFC no existe en la base");
+        // alertify.error("El RFC no existe en la base");
+        // alertify.set('notifier','position', 'top-center');
+        // alertify.error("Ups! No tenemos ese RFC registrado");
+        alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! No tenemos ese RFC registrado'}).show();
       } 
       else {
         if (retorno[0].resultado > 0 ) {
