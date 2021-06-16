@@ -95,17 +95,17 @@ async function activarCliente() {
 
       if (res.request.status == 200) {
       var respuesta = res.data;   // el resultado del query llega a res.data
-      console.log (respuesta[0].token); 
+      console.log (respuesta[0].result); 
     }
     
-    if (respuesta[0].token == 0 ) {
-      console.log ('El token no es correcto verifiquelo')
-      window.alert("El token no es correcto verifiquelo");
-      alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! el token no es correcto verifiquelo'}).show();
+    if (respuesta[0].result ==  "TNF" ) {
+      console.log ('No encontramos el Token')
+      window.alert("No encontramos el Token");
+      alertify.dialog('Ups!').set({transition:'pulse',message: 'No encontramos el Token'}).show();
     } 
     else {
-      if (respuesta[0].token > 0 ) {
-        console.log ('Token verificado')
+      if (respuesta[0].result == "NM" ) {
+        console.log ('El token no corresponde')
     }
   }
     return respuesta;
