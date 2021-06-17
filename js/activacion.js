@@ -74,12 +74,12 @@ async function verifica() {
 */
 
 async function activarCliente() {
-    const digito1= document.getElementById("Code1").value
-    const digito2= document.getElementById("Code2").value
-    const digito3= document.getElementById("Code3").value
-    const digito4= document.getElementById("Code4").value
-    const digito5= document.getElementById("Code5").value
-    const digito6= document.getElementById("Code6").value
+    const digito1 = document.getElementById("Code1").value
+    const digito2 = document.getElementById("Code2").value
+    const digito3 = document.getElementById("Code3").value
+    const digito4 = document.getElementById("Code4").value
+    const digito5 = document.getElementById("Code5").value
+    const digito6 = document.getElementById("Code6").value
 
     const ClienteToken= {
       token:digito1+digito2+digito3+digito4+digito5+digito6
