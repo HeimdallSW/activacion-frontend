@@ -64,7 +64,7 @@
                   <div class="col">
                     <!-- Form Group -->
                     <div class="form-group">
-                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code1" id="Code1" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus
+                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code1" id="Code1" onkeyup="verificar1(this.value);" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus
                              data-hs-mask-options='{
                                "template": "0"
                              }'>
@@ -75,7 +75,7 @@
                   <div class="col">
                     <!-- Form Group -->
                     <div class="form-group">
-                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code2" id="Code2" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
+                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code2" id="Code2" onkeyup="verificar1(this.value);" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
                              data-hs-mask-options='{
                                "template": "0"
                              }'>
@@ -86,7 +86,7 @@
                   <div class="col">
                     <!-- Form Group -->
                     <div class="form-group">
-                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code3" id="Code3" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
+                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code3" id="Code3" onkeyup="verificar1(this.value);" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
                              data-hs-mask-options='{
                                "template": "0"
                              }'>
@@ -97,7 +97,7 @@
                   <div class="col">
                     <!-- Form Group -->
                     <div class="form-group">
-                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code4" id="Code4" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
+                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code4" id="Code4" onkeyup="verificar1(this.value);" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
                              data-hs-mask-options='{
                                "template": "0"
                              }'>
@@ -108,7 +108,7 @@
                   <div class="col">
                     <!-- Form Group -->
                     <div class="form-group">
-                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code5" id="Code5" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
+                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code5" id="Code5" onkeyup="verificar1(this.value);" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
                              data-hs-mask-options='{
                                "template": "0"
                              }'>
@@ -119,7 +119,7 @@
                   <div class="col">
                     <!-- Form Group -->
                     <div class="form-group">
-                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code6" id="Code6" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
+                      <input type="text" class="js-masked-input form-control form-control-small-number"  name="code6" id="Code6" onkeyup="verificar1(this.value);" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
                              data-hs-mask-options='{
                                "template": "0"
                              }'>
@@ -130,7 +130,7 @@
                 </div>
 
                 <!-- <button type="submit" class="btn btn-lg btn-block btn-primary">Activar</button> -->
-                 <button type="submit" class="btn btn-lg btn-block btn-primary" id="token" onclick="activarCliente()">Activar</button>
+                 <button type="submit" id="btn-activar" class="btn btn-lg btn-block btn-primary" onclick="activarCliente()">Activar</button>
 
                 <!-- <div class="text-center mt-3">
                   <p>Haven't received it? <a href="#">Resend a new code.</a></p>
@@ -240,5 +240,26 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <!--Archivo de programación-->
     <script src="js/activacion.js"></script>
+
+    <!--Validación de campo RFC y activación de boton-->
+    <script>
+      var code1 = document.getElementById("code1");
+      var code2 = document.getElementById("code2");
+      var code3 = document.getElementById("code3");
+      var code4 = document.getElementById("code4");
+      var code5 = document.getElementById("code5");
+      var code6 = document.getElementById("code6");
+      var btnactivar = document.getElementById("btn-activar");
+    
+      btnactivar.disabled = true;
+    
+      function verificar1(valor) {
+        if (valor.length===1){
+          btnactivar.disabled = false;
+        } else {
+          btnactivar.disabled = true;
+        }
+      }
+        </script>
   </body>
 </html>
