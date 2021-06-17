@@ -22,7 +22,7 @@
 7.- Redireccionamiento a url de ...
 
 */
-async function verifica() {
+async function verificarRFC() {
     const ClienteRFC= {
       rfc: document.getElementById("rfc").value   
     }; 
@@ -46,7 +46,7 @@ async function verifica() {
         // alertify.error("El RFC no existe en la base");
         // alertify.set('notifier','position', 'top-center');
         // alertify.error("Ups! No tenemos ese RFC registrado");
-        alertify.alert('Modal: false').set('modal', false);
+        alertify.alert('Ups! No tenemos ese RFC registrado').set('modal', false);
         //  alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! No tenemos ese RFC registrado'}).show();
       } 
       else {

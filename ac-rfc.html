@@ -61,12 +61,12 @@
 
                   <p></p>
                 </div>
-
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                <!-- RFC -->
                <form id="formulario-rfc">
                   <div class="form-group">
 
-                    <input type="text" class="js-masked-input form-control text-center" name="RFC" id="rfc" placeholder="13 dígitos" style="text-transform:uppercase;" 
+                    <input type="text" class="js-masked-input form-control text-center" id="rfc" placeholder="13 dígitos" onkeyup="verificar13(this.value);" style="text-transform:uppercase;" 
                       data-hs-mask-options='{
                         "template": "AAAAAAAAAAAAA"
                       }'>
@@ -77,7 +77,7 @@
 
 
                 <!-- <button type="submit" class="btn btn-lg btn-block btn-primary">Verificar</button> -->
-                <button type="submit" class="btn btn-lg btn-block btn-primary" onclick="verifica()">Verificar</button>
+                <button type="submit" id="btn-verificar" class="btn btn-lg btn-block btn-primary" onclick="verificarRFC()">Verificar</button>
 
               </div>
             </div>
@@ -131,5 +131,20 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--Archivo de programación-->
     <script src="js/activacion.js"></script>
+
+    <script>
+      var rfc = document.getElementById("rfc");
+      var btnverificar = document.getElementById("btn-verificar");
+
+      btnverificar.disabled = true;
+
+      function verificar13(valor) {
+        if (valor.length===13){
+          btnverificar.disabled = false;
+        } else {
+          btnverificar.disabled = true;
+        }
+      }
+    </script>
   </body>
 </html>
