@@ -46,7 +46,8 @@ async function verifica() {
         // alertify.error("El RFC no existe en la base");
         // alertify.set('notifier','position', 'top-center');
         // alertify.error("Ups! No tenemos ese RFC registrado");
-        alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! No tenemos ese RFC registrado'}).show();
+        alertify.alert('Modal: false').set('modal', false);
+        //  alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! No tenemos ese RFC registrado'}).show();
       } 
       else {
         if (retorno[0].resultado > 0 ) {
@@ -58,7 +59,7 @@ async function verifica() {
     })
 
       .catch(err => {
-        if (err.request.status == 404) {
+        if (err.request.status == 500) {
             window.alert("Problema con la petición");
         }
       })
@@ -95,24 +96,38 @@ async function activarCliente() {
 
       if (res.request.status == 200) {
       var respuesta = res.data;   // el resultado del query llega a res.data
-      console.log (respuesta[0].result); 
+      console.log (respuesta); 
+    }
+
+    switch (respuesta) {
+      case 'TNF':
+       
+        console.log('No encontramos el token');
+        alertify.confirm('Closable: false').set('closable', false); 
+        //  window.alert("No encontramos el Token");
+        //  alertify.error("No encontramos el token");
+      // alertify.alert('Modal: TNF').set('modal', false);
+        break;
+      case 'NM':
+        console.log('El token no corresponde');
+        //  window.alert("El token no corresponde");
+        alertify.alert('Modal: NM').set('modal', false);
+        break;
+        case 'M':
+          console.log('El token hace Match');
+          //  window.alert("El token no corresponde");
+          alertify.alert('Modal: M').set('modal', false);
+          break;
+      default:
+        console.log('Respuesta no valida');
     }
     
-    if (respuesta[0].error ==  "TNF" ) {
-      console.log ('No encontramos el Token')
-      window.alert("No encontramos el Token");
-      alertify.dialog('Ups!').set({transition:'pulse',message: 'No encontramos el Token'}).show();
-    } 
-    else {
-      if (respuesta[0].error == "NM" ) {
-        console.log ('El token no corresponde')
-    }
-  }
     return respuesta;
+ 
   })
 
     .catch(err => {
-      if (err.request.status == 404) {
+      if (err.request.status == 500) {
           window.alert("Problema con la petición");
       }
     })
