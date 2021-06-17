@@ -98,13 +98,13 @@ async function activarCliente() {
       console.log (respuesta[0].result); 
     }
     
-    if (respuesta[0].result ==  "TNF" ) {
+    if (respuesta[0].error ==  "TNF" ) {
       console.log ('No encontramos el Token')
       window.alert("No encontramos el Token");
       alertify.dialog('Ups!').set({transition:'pulse',message: 'No encontramos el Token'}).show();
     } 
     else {
-      if (respuesta[0].result == "NM" ) {
+      if (respuesta[0].error == "NM" ) {
         console.log ('El token no corresponde')
     }
   }
