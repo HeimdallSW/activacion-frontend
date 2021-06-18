@@ -42,12 +42,14 @@ async function verificarRFC() {
       
       if (retorno[0].resultado == 0 ) {
         console.log ('El RFC no existe en la base')
-        // window.alert("El RFC no existe en la base");
+         window.alert("El RFC no existe en la base");
         // alertify.error("El RFC no existe en la base");
         // alertify.set('notifier','position', 'top-center');
         // alertify.error("Ups! No tenemos ese RFC registrado");
-        alertify.alert('Ups! No tenemos ese RFC registrado').set('modal', false);
+        // alertify.alert('Ups! No tenemos ese RFC registrado').set('modal', false);
         //  alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! No tenemos ese RFC registrado'}).show();
+    
+      
       } 
       else {
         if (retorno[0].resultado > 0 ) {
@@ -96,28 +98,55 @@ async function activarCliente() {
 
       if (res.request.status == 200) {
       var respuesta = res.data;   // el resultado del query llega a res.data
-      console.log (respuesta); 
+      console.log (respuesta.status); 
+      // console.log (respuesta[0].status); 
     }
 
-    switch (respuesta) {
+    switch (respuesta.status) {
       case 'TNF':
-       
         console.log('No encontramos el token');
-        alertify.confirm('Closable: false').set('closable', false); 
+        (function() {
+          var modalsmall = window.alert;
+          window.alert = function() {
+            // $("#welcomeMessageModal .modal-dialog").text(arguments[0]);
+            $("#Small .modal-dialog")
+            $("#Small").modal('show');
+          };
+        })();
+        alert('');
+        
+        
+        // alertify.confirm('No encontramos el token').set('closable', false); 
         //  window.alert("No encontramos el Token");
-        //  alertify.error("No encontramos el token");
-      // alertify.alert('Modal: TNF').set('modal', false);
         break;
+
       case 'NM':
-        console.log('El token no corresponde');
-        //  window.alert("El token no corresponde");
-        alertify.alert('Modal: NM').set('modal', false);
-        break;
-        case 'M':
-          console.log('El token hace Match');
-          //  window.alert("El token no corresponde");
-          alertify.alert('Modal: M').set('modal', false);
+          console.log('El token no coincide con el RFC');
+          // alertify.confirm('El token no coincide con el RFC').set('closable', false); 
+          //  window.alert("No encontramos el Token");
+          
           break;
+
+          case 'SA':
+            console.log('FELICIDADES: El software esta Activo');
+            (function() {
+              var proxied = window.alert;
+              window.alert = function() {
+                // $("#welcomeMessageModal .modal-dialog").text(arguments[0]);
+                $("#welcomeMessageModal .modal-dialog")
+                $("#welcomeMessageModal").modal('show');
+              };
+            })();
+            alert('');
+          
+      
+            break;
+
+        case 'SAA':
+            console.log('El software ya esta activado');
+            alertify.confirm('El software ya esta activado y se activo el día ' + respuesta.fecha).set('closable', false); 
+            break;
+  
       default:
         console.log('Respuesta no valida');
     }
