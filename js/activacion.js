@@ -26,7 +26,7 @@ async function verificarRFC() {
     const ClienteRFC= {
       rfc: document.getElementById("rfc").value   
     }; 
-    console.log(ClienteRFC);
+    // console.log(ClienteRFC); // log
    
     var retorno = ""; //variable que guarda los datos del res
     await axios 
@@ -37,28 +37,41 @@ async function verificarRFC() {
 
         if (res.request.status == 200) {
         var retorno = res.data;   // el resultado del query llega a res.data
-        console.log (retorno[0].resultado); 
+        // console.log (retorno[0].resultado); // log
       }
+
+
+      switch (true) {
+
+        case retorno[0].resultado == 0:
+          // console.log ('El RFC no existe en la base') // log
+
+            var proxied = window.alert;
+            window.alert = function() {
+              $("#RFCincorrectoModal .modal-dialog")
+              $("#RFCincorrectoModal").modal('show');
+            };
       
-      if (retorno[0].resultado == 0 ) {
-        console.log ('El RFC no existe en la base')
-         window.alert("El RFC no existe en la base");
-        // alertify.error("El RFC no existe en la base");
-        // alertify.set('notifier','position', 'top-center');
-        // alertify.error("Ups! No tenemos ese RFC registrado");
-        // alertify.alert('Ups! No tenemos ese RFC registrado').set('modal', false);
-        //  alertify.dialog('Ups!').set({transition:'pulse',message: 'Ups! No tenemos ese RFC registrado'}).show();
-    
-      
-      } 
-      else {
-        if (retorno[0].resultado > 0 ) {
+          alert('');
+          
+          break;
+
+          case retorno[0].resultado > 0:
+
           console.log ('RFC encontrado')
+  
           location.href = "https://back-activacion.herokuapp.com/activacion"; 
-      }
-    }
-      return retorno;
-    })
+          
+          break;
+      
+          default:
+            console.log ('default')
+        }
+        
+        return retorno;
+     
+      })
+
 
       .catch(err => {
         if (err.request.status == 500) {
@@ -77,6 +90,9 @@ async function verificarRFC() {
 */
 
 async function activarCliente() {
+
+  
+
     const digito1 = document.getElementById("Code1").value
     const digito2 = document.getElementById("Code2").value
     const digito3 = document.getElementById("Code3").value
@@ -87,6 +103,8 @@ async function activarCliente() {
     const ClienteToken= {
       token:digito1+digito2+digito3+digito4+digito5+digito6
     }
+
+   
 
     console.log(ClienteToken);
 
@@ -104,19 +122,17 @@ async function activarCliente() {
 
     switch (respuesta.status) {
       case 'TNF':
-        console.log('No encontramos el token');
+        console.log('No encontramos el código');
+
         (function() {
-          var modalsmall = window.alert;
+          var codigoIncorrecto = window.alert;
           window.alert = function() {
-            $("#Small .modal-dialog")
-            $("#Small").modal('show');
+            $("#codigoIncorrectoModal .modal-dialog")
+            $("#codigoIncorrectoModal").modal('show');
           };
         })();
         alert('');
         
-        
-        // alertify.confirm('No encontramos el token').set('closable', false); 
-        //  window.alert("No encontramos el Token");
         break;
 
       case 'NM':
@@ -127,16 +143,21 @@ async function activarCliente() {
           break;
 
           case 'SA':
-            const fecha = document.getElementById("fecha").value
-            console.log('FELICIDADES: El software esta Activo');
-            console.log(respuesta.fecha);
-            console.log(fecha) 
+
+         //  var fecha = document.getElementById("fecha").textContent
+         // console.log(fecha);
+
+        var fecha = document.getElementById("fecha"); //  Adquiere el valor del elemento de HTML con id= fecha
+        fecha.textContent = respuesta.fecha;          // Cambia el contenido de lo que tiene fecha por el valor de fecha de la respuesta del servidor
+           
+       console.log('FELICIDADES: El software esta Activo');
+     //  console.log(respuesta.fecha);
+       
             (function() {
               var proxied = window.alert;
               window.alert = function() {
-                // $("#welcomeMessageModal .modal-dialog").text(arguments[0]);
-                $("#welcomeMessageModal .modal-dialog")
-                $("#welcomeMessageModal").modal('show');
+                $("#softwareActivadoModal .modal-dialog")
+                $("#softwareActivadoModal").modal('show');
               };
             })();
             alert('');
@@ -163,4 +184,6 @@ async function activarCliente() {
           window.alert("Problema con la petición");
       }
     })
+
+
 };

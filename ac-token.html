@@ -150,8 +150,8 @@
         </div>
       </div>
       <!-- End Content -->
-<!-- Welcome Message Modal -->
-<div class="modal fade" id="welcomeMessageModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Software Activado Modal -->
+<div class="modal fade" id="softwareActivadoModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <!-- Header -->
@@ -169,62 +169,39 @@
             <img class="img-fluid" src="./assets/svg/components/arm-wrestling.svg" alt="Image Description">
           </div>
 
-          <h1>¡Felicidades!</h1>
-            <p><div id="fecha">sdaaddada</div> <b>Heimdall</b> es parte de tu organización</p>
-            <p>Para comenzar, es necesario que te registres como administrador.</p>
+          <h1>¡Activación Exitosa!</h1>
+          <h4><span id="fecha" class="mb-2"></span></h4>
 
-            <a class="btn btn-primary" href="index.html">Registrarme</a>
+          <p>Ahora <span class="text-primary"><b>Heimdall</b></span> ya es parte de tu organización</p>
+            <p>Para comenzar a utilizarlo, solo necesitamos que te registres como administrador.</p>
+
+            <a class="btn btn-primary" href="https://back-registro.herokuapp.com/api/registro/confirma">Registrarme</a> 
         </div>
       </div>
-
-
       <!-- End Body -->
-
-      <!-- Footer -->
-      <!-- <div class="modal-footer d-block text-center py-sm-5">
-        <small class="text-cap mb-4">Respaldados por los mejores colegios privados </small>
-
-        <div class="w-85 mx-auto">
-          <div class="row justify-content-between">
-            <div class="col">
-              <img class="img-fluid ie-welcome-brands" src="./assets/svg/brands/gitlab-gray.svg" alt="Image Description">
-            </div>
-            <div class="col">
-              <img class="img-fluid ie-welcome-brands" src="./assets/svg/brands/fitbit-gray.svg" alt="Image Description">
-            </div>
-            <div class="col">
-              <img class="img-fluid ie-welcome-brands" src="./assets/svg/brands/flow-xo-gray.svg" alt="Image Description">
-            </div>
-            <div class="col">
-              <img class="img-fluid ie-welcome-brands" src="./assets/svg/brands/layar-gray.svg" alt="Image Description">
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- End Footer -->
     </div>
   </div>
 </div>
-<!-- End Welcome Message Modal -->
+<!-- End Software Activado Modal -->
 
 
-   <!-- Modal -->
-   <div class="modal fade bd-example-modal-sm" id="Small" tabindex="-1" role="dialog"  aria-hidden="true">
+   <!-- Codigo Incorrecto Modal -->
+   <div class="modal fade bd-example-modal-sm" id="codigoIncorrectoModal" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-header bg-danger">
-          <h5 class="modal-title text-white  h4" >Oh oh!</h5>
-          <button type="button" class="btn btn-xs btn-icon btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title text-white  h4 mb-3" >Oh no! Código incorrecto</h5>
+          <button type="button" class="btn btn-xs btn-icon btn-ghost-light mb-3" data-dismiss="modal" aria-label="Close">
             <i class="tio-clear tio-lg"></i>
           </button>
         </div>
         <div class="modal-body">
-          No encontramos ese código, por favor verificalo e ingresela nuevamente.
+         Por favor verifica tu código e ingrésalo nuevamente.
         </div>
       </div>
     </div>
   </div>
-  <!-- End Modal -->
+  <!-- End Codigo Incorrecto Modal -->
 
 
     </main>
