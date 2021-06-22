@@ -98,7 +98,7 @@ async function activarCliente() {
 
       if (res.request.status == 200) {
       var respuesta = res.data;   // el resultado del query llega a res.data
-      console.log (respuesta.status); 
+      console.log (respuesta.status);
       // console.log (respuesta[0].status); 
     }
 
@@ -108,7 +108,6 @@ async function activarCliente() {
         (function() {
           var modalsmall = window.alert;
           window.alert = function() {
-            // $("#welcomeMessageModal .modal-dialog").text(arguments[0]);
             $("#Small .modal-dialog")
             $("#Small").modal('show');
           };
@@ -128,7 +127,10 @@ async function activarCliente() {
           break;
 
           case 'SA':
+            const fecha = document.getElementById("fecha").value
             console.log('FELICIDADES: El software esta Activo');
+            console.log(respuesta.fecha);
+            console.log(fecha) 
             (function() {
               var proxied = window.alert;
               window.alert = function() {
@@ -144,6 +146,7 @@ async function activarCliente() {
 
         case 'SAA':
             console.log('El software ya esta activado');
+            console.log(respuesta.fecha); 
             alertify.confirm('El software ya esta activado y se activo el día ' + respuesta.fecha).set('closable', false); 
             break;
   
